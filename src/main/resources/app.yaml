@@ -1,0 +1,9 @@
+info:
+  app:
+    version: "1.0"
+    description: "Super application"
+
+    
+health:
+  http:
+    threshold: "10"

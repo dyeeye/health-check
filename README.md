@@ -1,0 +1,2 @@
+# Health Check Demo for Mule 4 application
+The case of Health Check design and implementation for Mule 4 application has been described on this blog [post](https://profit-online.pl/2018/04/service-healthy/).

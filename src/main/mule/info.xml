@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="infoFlow" doc:id="fd24925a-65a6-4841-9d34-f5bc7b760728" >
+		<http:listener doc:name="Listener" doc:id="573a52a6-05d3-4305-9f8b-c3c928ce50d2" config-ref="HTTP_Listener_config" path="/info" allowedMethods="GET"/>
+		<ee:transform doc:name="Transform Message" doc:id="f8a652c0-ed34-450c-8802-ed0c378aa139" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json skipNullOn="everywhere"
+---
+{
+	app: {
+		description: p("info.app.description"),
+		version: p("info.app.version"),
+		name: p("app.name"),
+		p: p("info.app")
+	}
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
